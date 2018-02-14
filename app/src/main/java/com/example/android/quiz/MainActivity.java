@@ -15,6 +15,8 @@ import java.util.Collections;
 
 public class MainActivity extends AppCompatActivity {
 
+    RadioGroup radioGroup;
+    RadioButton radio_1, radio_2, radio_3, radio_4;
     QuestionBank allQuestions = new QuestionBank();
     String pickedAnswer = "", correctAnswer = "";
     final int numberOfQuestions = allQuestions.list.size();
@@ -23,14 +25,19 @@ public class MainActivity extends AppCompatActivity {
 
 
     @Override
-    protected void onCreate(Bundle savedInstanceState) {
+    public void onCreate(Bundle savedInstanceState) {
+        radioGroup = (RadioGroup) findViewById(R.id.radio_group);
+        radio_1 = (RadioButton) findViewById(R.id.option1_button);
+        radio_2 = (RadioButton) findViewById(R.id.option2_button);
+        radio_3 = (RadioButton) findViewById(R.id.option3_button);
+        radio_4 = (RadioButton) findViewById(R.id.option4_button);
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         nextQuestion();
     }
 
     private void nextQuestion() {
-        uncheckAll();
+
         if (questionNumber <= numberOfQuestions - 1) {
             TextView questionLabel = (TextView) findViewById(R.id.question_text_view);
             String fullQuestion = allQuestions.list.get(questionNumber).questionSet.get("question").toString();
@@ -48,27 +55,25 @@ public class MainActivity extends AppCompatActivity {
     }
 
     public void getSelectedAnswer() {
-        RadioButton radio_1 = (RadioButton) findViewById(R.id.option1_button);
-        RadioButton radio_2 = (RadioButton) findViewById(R.id.option2_button);
-        RadioButton radio_3 = (RadioButton) findViewById(R.id.option3_button);
-        RadioButton radio_4 = (RadioButton) findViewById(R.id.option4_button);
 
 
         if (radio_1.isChecked()) {
             pickedAnswer = "a";
-            radio_1.setChecked(false);
+            //radio_1.setChecked(false);
         } else if (radio_2.isChecked()) {
             pickedAnswer = "b";
-            radio_2.setChecked(false);
+            //radio_2.setChecked(false);
         } else if (radio_3.isChecked()) {
             pickedAnswer = "c";
-            radio_3.setChecked(false);
+            //radio_3.setChecked(false);
         } else if (radio_4.isChecked()) {
             pickedAnswer = "d";
-            radio_4.setChecked(false);
+            //radio_4.setChecked(false);
         } else {
             noSelection = true;
         }
+
+        radioGroup.clearCheck();
 
 
     }
@@ -110,15 +115,5 @@ public class MainActivity extends AppCompatActivity {
 
     }
 
-    public void uncheckAll(){
-        RadioButton radio_1 = (RadioButton) findViewById(R.id.option1_button);
-        RadioButton radio_2 = (RadioButton) findViewById(R.id.option2_button);
-        RadioButton radio_3 = (RadioButton) findViewById(R.id.option3_button);
-        RadioButton radio_4 = (RadioButton) findViewById(R.id.option4_button);
-        radio_1.setChecked(false);
-        radio_2.setChecked(false);
-        radio_3.setChecked(false);
-        radio_4.setChecked(false);
 
-    }
 }
