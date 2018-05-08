@@ -26,13 +26,15 @@ public class MainActivity extends AppCompatActivity {
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
-        radioGroup = (RadioGroup) findViewById(R.id.radio_group);
-        radio_1 = (RadioButton) findViewById(R.id.option1_button);
-        radio_2 = (RadioButton) findViewById(R.id.option2_button);
-        radio_3 = (RadioButton) findViewById(R.id.option3_button);
-        radio_4 = (RadioButton) findViewById(R.id.option4_button);
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+
+        radioGroup = findViewById(R.id.radio_group);
+        radio_1 = findViewById(R.id.option1_button);
+        radio_2 = findViewById(R.id.option2_button);
+        radio_3 = findViewById(R.id.option3_button);
+        radio_4 = findViewById(R.id.option4_button);
+
         nextQuestion();
     }
 
