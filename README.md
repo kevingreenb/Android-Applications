@@ -1,3 +1,0 @@
-# Quiz
-# Quiz
-# udacity
