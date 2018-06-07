@@ -23,7 +23,7 @@ public class QuestionBank {
                 "To provide clear guidelines for web application architecture.",
                 "To better administrate databases.",
                 "To compete against Java.",
-                "1",
+                "a",
                 typeOfQuestion.CHECKBOX));
 
         list.add(new Question( "Fill in the text below with the method that would hide the element #my-element.",
@@ -41,7 +41,7 @@ public class QuestionBank {
                 "Select the list item nested within #price-list and set its HTML content to $4.99",
                 "",
                 "c",
-                typeOfQuestion.TEXTENTRY));
+                typeOfQuestion.BUTTON));
     }
 
 }
