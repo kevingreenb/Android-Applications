@@ -2,7 +2,7 @@ package com.example.android.quiz;
 
 /**
  * Created by KevinGreen on 2/8/18.
- * Credit to Tiberius for help and code.
+ * Credit to Tiberius for help and code https://github.com/Causaelity
  */
 import java.util.HashMap;
 import java.util.Map;

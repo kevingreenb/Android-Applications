@@ -7,52 +7,123 @@
     android:orientation="vertical"
     tools:context="com.example.android.quiz.MainActivity">
 
-    <TextView
-        android:id="@+id/question_text_view"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Question"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
-
-    <RadioGroup
-        android:id="@+id/radio_group"
-        android:layout_width="wrap_content"
+    <RelativeLayout
+        android:layout_width="match_parent"
         android:layout_height="wrap_content">
 
-        <RadioButton
-            android:id="@+id/option1_button"
-            android:layout_width="wrap_content"
+        <TextView
+            android:id="@+id/quiz_text"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="A" />
+            android:text="JavaScript Quiz" />
 
-        <RadioButton
-            android:id="@+id/option2_button"
-            android:layout_width="wrap_content"
+        <TextView
+            android:id="@+id/question_text"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="B" />
+            android:layout_below="@+id/quiz_text"
+            android:text="Placeholder for question" />
 
-        <RadioButton
-            android:id="@+id/option3_button"
-            android:layout_width="wrap_content"
+        <RadioGroup
+            android:id="@+id/radio_group"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="C" />
+            android:layout_below="@+id/question_text">
 
-        <RadioButton
+            <RadioButton
+                android:id="@+id/option1_radio"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content" />
 
-            android:id="@+id/option4_button"
-            android:layout_width="wrap_content"
+            <RadioButton
+                android:id="@+id/option2_radio"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content" />
+
+            <RadioButton
+                android:id="@+id/option3_radio"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content" />
+
+            <RadioButton
+                android:id="@+id/option4_radio"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content" />
+
+        </RadioGroup>
+
+        <LinearLayout
+            android:id="@+id/button_group"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="D" />
-    </RadioGroup>
+            android:layout_below="@id/radio_group">
 
-    <Button
-        android:id="@+id/submit_answer"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:onClick="submitAnswer"
-        android:text="Next Question" />
+            <Button
+                android:id="@+id/option1_button"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1" />
+
+            <Button
+                android:id="@+id/option2_button"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1" />
+
+            <Button
+                android:id="@+id/option3_button"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1" />
+
+            <Button
+                android:id="@+id/option4_button"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1" />
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/check_group"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/button_group">
+
+            <CheckBox
+                android:id="@+id/option1_check"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1" />
+
+            <CheckBox
+                android:id="@+id/option2_check"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1" />
+
+            <CheckBox
+                android:id="@+id/option3_check"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1" />
+
+            <CheckBox
+                android:id="@+id/option4_check"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1" />
+
+        </LinearLayout>
+
+        <Button
+            android:layout_width="100dp"
+            android:layout_height="wrap_content"
+            android:layout_alignParentBottom="true"
+            android:layout_centerHorizontal="true"
+            android:text="Submit" />
+
+
+    </RelativeLayout>
 
 </LinearLayout>

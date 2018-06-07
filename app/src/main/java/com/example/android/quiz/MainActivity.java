@@ -1,20 +1,36 @@
 package com.example.android.quiz;
-
+/**
+ * Created by KevinGreen on 2/8/18.
+ * Credit to Tiberius for help and code https://github.com/Causaelity
+ */
+import android.animation.ValueAnimator;
+import android.content.DialogInterface;
+import android.content.res.Resources;
+import android.graphics.Color;
+import android.os.Handler;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.view.Gravity;
 import android.view.View;
+import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.CheckBox;
+import android.widget.EditText;
+import android.widget.LinearLayout;
 import android.widget.RadioButton;
 import android.widget.RadioGroup;
-import android.widget.Switch;
 import android.widget.TextView;
+import android.widget.Toast;
 
-import java.util.Collection;
+import java.util.ArrayList;
 import java.util.Collections;
+import java.util.List;
 
 public class MainActivity extends AppCompatActivity {
 
+
+    //Variables, views and constants
     RadioGroup radioGroup;
     RadioButton radio_1, radio_2, radio_3, radio_4;
     QuestionBank allQuestions = new QuestionBank();
@@ -24,16 +40,18 @@ public class MainActivity extends AppCompatActivity {
     boolean noSelection = false;
 
 
+
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
+
         radioGroup = findViewById(R.id.radio_group);
-        radio_1 = findViewById(R.id.option1_button);
-        radio_2 = findViewById(R.id.option2_button);
-        radio_3 = findViewById(R.id.option3_button);
-        radio_4 = findViewById(R.id.option4_button);
+        radio_1 = findViewById(R.id.option1_radio);
+        radio_2 = findViewById(R.id.option2_radio);
+        radio_3 = findViewById(R.id.option3_radio);
+        radio_4 = findViewById(R.id.option4_radio);
 
         nextQuestion();
     }
