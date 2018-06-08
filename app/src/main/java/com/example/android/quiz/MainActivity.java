@@ -1,58 +1,48 @@
 package com.example.android.quiz;
-/**
- * Created by KevinGreen on 2/8/18.
- * Credit to Tiberius for help and code https://github.com/Causaelity
- */
-import android.animation.ValueAnimator;
-import android.content.DialogInterface;
-import android.content.res.Resources;
-import android.graphics.Color;
-import android.os.Handler;
+
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
-import android.view.Gravity;
 import android.view.View;
-import android.view.ViewGroup;
 import android.widget.Button;
-import android.widget.CheckBox;
-import android.widget.EditText;
 import android.widget.LinearLayout;
 import android.widget.RadioButton;
 import android.widget.RadioGroup;
+import android.widget.Switch;
 import android.widget.TextView;
-import android.widget.Toast;
 
-import java.util.ArrayList;
+import java.util.Collection;
 import java.util.Collections;
-import java.util.List;
 
 public class MainActivity extends AppCompatActivity {
 
-
-    //Variables, views and constants
     RadioGroup radioGroup;
+    LinearLayout buttonGroup;
     RadioButton radio_1, radio_2, radio_3, radio_4;
+    Button btn_a, btn_b, btn_c, btn_d, nextQ;
     QuestionBank allQuestions = new QuestionBank();
-    String pickedAnswer = "", correctAnswer = "";
+    String pickedAnswer = "", correctAnswer = "", questionFormat = "";
     final int numberOfQuestions = allQuestions.list.size();
     int questionNumber = 0;
     boolean noSelection = false;
-
 
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-
-
+        btn_a = findViewById(R.id.button_a);
+        btn_b = findViewById(R.id.button_b);
+        btn_c = findViewById(R.id.button_c);
+        btn_d = findViewById(R.id.button_d);
+        nextQ = findViewById(R.id.submit_answer);
+        buttonGroup = findViewById(R.id.button_group);
         radioGroup = findViewById(R.id.radio_group);
-        radio_1 = findViewById(R.id.option1_radio);
-        radio_2 = findViewById(R.id.option2_radio);
-        radio_3 = findViewById(R.id.option3_radio);
-        radio_4 = findViewById(R.id.option4_radio);
-
+        radio_1 = findViewById(R.id.option1_button);
+        radio_2 = findViewById(R.id.option2_button);
+        radio_3 = findViewById(R.id.option3_button);
+        radio_4 = findViewById(R.id.option4_button);
+        hideAll();
         nextQuestion();
     }
 
@@ -68,44 +58,100 @@ public class MainActivity extends AppCompatActivity {
             correctAnswer = allQuestions.list.get(questionNumber).questionSet.get("answer").toString();
 
             questionLabel.setText(fullQuestion);
+
+            if (allQuestions.list.get(questionNumber).questionSet.get("format").toString().equals("RADIO")) {
+                questionFormat = "RADIO";
+                displayRadio();
+                nextQ.setVisibility(View.VISIBLE);
+            } else if (allQuestions.list.get(questionNumber).questionSet.get("format").toString().equals("BUTTON")) {
+                questionFormat = "BUTTON";
+                displayButton();
+                nextQ.setVisibility(View.INVISIBLE);
+            }
             questionNumber++;
         } else {
             restart();
         }
     }
 
-    public void getSelectedAnswer() {
+    //Action for button
 
+    public void buttonA(View view) {
+        pickedAnswer = "a";
+        checkAnswer();
+        nextQuestion();
+    }
+    public void buttonB(View view) {
+        pickedAnswer = "b";
+        checkAnswer();
+        nextQuestion();
+    }
+    public void buttonC(View view) {
+        pickedAnswer = "c";
+        checkAnswer();
+        nextQuestion();
+    }
+    public void buttonD(View view) {
+        pickedAnswer = "d";
+        checkAnswer();
+        nextQuestion();
+    }
 
-        if (radio_1.isChecked()) {
-            pickedAnswer = "a";
-            //radio_1.setChecked(false);
-        } else if (radio_2.isChecked()) {
-            pickedAnswer = "b";
-            //radio_2.setChecked(false);
-        } else if (radio_3.isChecked()) {
-            pickedAnswer = "c";
-            //radio_3.setChecked(false);
-        } else if (radio_4.isChecked()) {
-            pickedAnswer = "d";
-            //radio_4.setChecked(false);
-        } else {
-            noSelection = true;
+    public void getSelectedAnswer(View view) {
+
+        if (questionFormat.equals("RADIO")) {
+            if (radio_1.isChecked()) {
+                pickedAnswer = "a";
+                //radio_1.setChecked(false);
+            } else if (radio_2.isChecked()) {
+                pickedAnswer = "b";
+                //radio_2.setChecked(false);
+            } else if (radio_3.isChecked()) {
+                pickedAnswer = "c";
+                //radio_3.setChecked(false);
+            } else if (radio_4.isChecked()) {
+                pickedAnswer = "d";
+                //radio_4.setChecked(false);
+            } else if (pickedAnswer.equals("")) {
+                noSelection = true;
+            }
+            radioGroup.clearCheck();
         }
+    /*
+        else if (questionFormat.equals("BUTTON")){
 
-        radioGroup.clearCheck();
+            switch(view.getId()) {
+                case R.id.button_a:
+                    pickedAnswer = "a";
+                    break;
+                case R.id.button_b:
+                    pickedAnswer = "b";
+                    break;
+                case R.id.button_c:
+                    pickedAnswer = "c";
+                    break;
+                case R.id.button_d:
+                    pickedAnswer = "d";
+                    break;
+                default:
+                    break;
+            }
+
+        }
+        */
 
 
     }
 
     public void submitAnswer(View view) {
-        getSelectedAnswer();
+        getSelectedAnswer(view);
         if (noSelection) {
             AlertDialog.Builder a_builder = new AlertDialog.Builder(this);
             a_builder.setMessage("Please select an answer!");
             a_builder.show();
             noSelection = false;
         } else {
+            hideAll();
             checkAnswer();
             nextQuestion();
         }
@@ -127,9 +173,26 @@ public class MainActivity extends AppCompatActivity {
 
     }
 
+    // Hide all the Input Views
+    private void hideAll() {
+        buttonGroup.setVisibility(View.INVISIBLE);
+        radioGroup.setVisibility(View.INVISIBLE);
+        //checkBoxLayout.setVisibility(View.INVISIBLE);
+        //submitButton.setVisibility(View.INVISIBLE);
+        //answerField.setVisibility(View.INVISIBLE);
+    }
+
+    private void displayRadio() {
+        radioGroup.setVisibility(View.VISIBLE);
+    }
+
+    private void displayButton() {
+        buttonGroup.setVisibility(View.VISIBLE);
+    }
 
     public void restart() {
         questionNumber = 0;
+        hideAll();
         //Collections.shuffle(allQuestions.list);
         nextQuestion();
 
