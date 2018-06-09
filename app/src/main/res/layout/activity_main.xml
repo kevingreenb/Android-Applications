@@ -1,143 +1,220 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:orientation="vertical"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent"
+    android:background="@drawable/main_background"
     tools:context="com.example.android.quiz.MainActivity">
 
-    <TextView
-        android:id="@+id/question_text_view"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Question"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
-
-
-    <RadioGroup
-        android:id="@+id/radio_group"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content">
-
-        <RadioButton
-            android:id="@+id/option1_button"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="A" />
-
-        <RadioButton
-            android:id="@+id/option2_button"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="B" />
-
-        <RadioButton
-            android:id="@+id/option3_button"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="C" />
-
-        <RadioButton
-
-            android:id="@+id/option4_button"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="D" />
-    </RadioGroup>
-
-    <LinearLayout
-        android:id="@+id/button_group"
+    <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content">
+        android:layout_height="match_parent">
+
+        <TextView
+            android:id="@+id/question_text_view"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerHorizontal="true"
+            android:text="Question"
+            android:textSize="@dimen/font_size3"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <TextView
+            android:id="@+id/answers_text"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/question_text_view"
+            android:layout_centerHorizontal="true"
+            android:text="Answers"
+            android:textSize="@dimen/font_size2"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <TextView
+            android:id="@+id/final_text"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerHorizontal="true"
+            android:text="Final"
+            android:textSize="@dimen/font_size4"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+
+        <RadioGroup
+            android:id="@+id/radio_group"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/answers_text">
+
+            <RadioButton
+                android:id="@+id/option1_button"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="A"
+                android:textSize="@dimen/font_size1" />
+
+            <RadioButton
+                android:id="@+id/option2_button"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="B"
+                android:textSize="@dimen/font_size1" />
+
+            <RadioButton
+                android:id="@+id/option3_button"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="C"
+                android:textSize="@dimen/font_size1" />
+
+            <RadioButton
+                android:id="@+id/option4_button"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="D"
+                android:textSize="@dimen/font_size1" />
+        </RadioGroup>
+
+
+        <LinearLayout
+            android:id="@+id/button_group"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/answers_text">
+
+            <Button
+                android:id="@+id/button_a"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="16dp"
+                android:layout_marginLeft="8dp"
+                android:layout_marginRight="8dp"
+                android:layout_weight="1"
+                android:background="@drawable/button_shape"
+                android:onClick="buttonA"
+                android:text="A"
+                android:textSize="@dimen/font_size1" />
+
+            <Button
+                android:id="@+id/button_b"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="16dp"
+                android:layout_marginLeft="8dp"
+                android:layout_marginRight="8dp"
+                android:layout_weight="1"
+                android:background="@drawable/button_shape"
+                android:onClick="buttonB"
+                android:text="B"
+                android:textSize="@dimen/font_size1" />
+
+            <Button
+                android:id="@+id/button_c"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="16dp"
+                android:layout_marginLeft="8dp"
+                android:layout_marginRight="8dp"
+                android:layout_weight="1"
+                android:background="@drawable/button_shape"
+                android:onClick="buttonC"
+                android:text="C"
+                android:textSize="@dimen/font_size1" />
+
+            <Button
+                android:id="@+id/button_d"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="16dp"
+                android:layout_marginLeft="8dp"
+                android:layout_marginRight="8dp"
+                android:layout_weight="1"
+                android:background="@drawable/button_shape"
+                android:onClick="buttonD"
+                android:text="D"
+                android:textSize="@dimen/font_size1" />
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/check_group"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/answers_text"
+            android:orientation="vertical">
+
+            <CheckBox
+                android:id="@+id/check_a"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="A"
+                android:textSize="@dimen/font_size1" />
+
+            <CheckBox
+                android:id="@+id/check_b"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="B"
+                android:textSize="@dimen/font_size1" />
+
+            <CheckBox
+                android:id="@+id/check_c"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="C"
+                android:textSize="@dimen/font_size1" />
+
+            <CheckBox
+                android:id="@+id/check_d"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="D"
+                android:textSize="@dimen/font_size1" />
+
+        </LinearLayout>
+
+
+        <EditText
+            android:id="@+id/text_entry"
+            android:layout_width="300dp"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/question_text_view"
+            android:layout_centerHorizontal="true"
+            android:background="#FFFFFF"
+            android:inputType="text"
+            android:textSize="@dimen/font_size1" />
 
         <Button
-            android:id="@+id/button_a"
+            android:id="@+id/try_again"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:onClick="buttonA"
-            android:text="A" />
+            android:layout_below="@+id/radio_group"
+            android:layout_centerHorizontal="true"
+            android:background="@drawable/button_shape2"
+            android:onClick="restart"
+            android:text="Try again"
+            android:textSize="@dimen/font_size1" />
 
         <Button
-            android:id="@+id/button_b"
+            android:id="@+id/submit_answer"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:onClick="buttonB"
-            android:text="B" />
+            android:layout_below="@+id/radio_group"
+            android:layout_centerHorizontal="true"
+            android:background="@drawable/button_shape2"
+            android:onClick="submitAnswer"
+            android:text="Next Question"
+            android:textSize="@dimen/font_size1" />
 
-        <Button
-            android:id="@+id/button_c"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:onClick="buttonC"
-            android:text="C" />
-
-        <Button
-            android:id="@+id/button_d"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:onClick="buttonD"
-            android:text="D" />
-
-    </LinearLayout>
-
-    <LinearLayout
-        android:id="@+id/check_group"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:orientation="vertical">
-
-        <CheckBox
-            android:id="@+id/check_a"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="A" />
-
-        <CheckBox
-            android:id="@+id/check_b"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="B" />
-
-        <CheckBox
-            android:id="@+id/check_c"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="C" />
-
-        <CheckBox
-            android:id="@+id/check_d"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="D" />
-
-    </LinearLayout>
-
-    <EditText
-        android:id="@+id/text_entry"
-        android:layout_width="100dp"
-        android:layout_height="wrap_content"
-        android:inputType="text" />
-    <Button
-        android:id="@+id/try_again"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:onClick="restart"
-        android:text="Try again"/>
-
-    <Button
-        android:id="@+id/submit_answer"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:onClick="submitAnswer"
-        android:text="Next Question"
-        />
-
-</LinearLayout>
+    </RelativeLayout>
+</ScrollView>

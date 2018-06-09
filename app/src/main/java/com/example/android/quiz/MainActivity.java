@@ -15,6 +15,8 @@ import android.os.Handler;
 import android.widget.Switch;
 import android.widget.TextView;
 
+import org.w3c.dom.Text;
+
 import java.util.Collection;
 import java.util.Collections;
 
@@ -23,6 +25,7 @@ public class MainActivity extends AppCompatActivity {
 
     RadioGroup radioGroup;
     EditText text_Entry;
+    TextView questionLabel, finalLabel, answers;
     LinearLayout buttonGroup, checkGroup;
     RadioButton radio_1, radio_2, radio_3, radio_4;
     Button btn_a, btn_b, btn_c, btn_d, nextQ, tryAgain;
@@ -57,23 +60,29 @@ public class MainActivity extends AppCompatActivity {
         radio_2 = findViewById(R.id.option2_button);
         radio_3 = findViewById(R.id.option3_button);
         radio_4 = findViewById(R.id.option4_button);
+        questionLabel = (TextView) findViewById(R.id.question_text_view);
+        finalLabel = (TextView) findViewById(R.id.final_text);
+        answers = (TextView) findViewById(R.id.answers_text);
         hideAll();
         nextQuestion();
     }
 
-    private void nextQuestion() {
+    public void nextQuestion() {
         hideAll();
-        TextView questionLabel = (TextView) findViewById(R.id.question_text_view);
+
 
         if (questionNumber <= numberOfQuestions - 1) {
 
             String fullQuestion = allQuestions.list.get(questionNumber).questionSet.get("question").toString();
-            fullQuestion += allQuestions.list.get(questionNumber).questionSet.get("a");
-            fullQuestion += allQuestions.list.get(questionNumber).questionSet.get("b");
-            fullQuestion += allQuestions.list.get(questionNumber).questionSet.get("c");
-            fullQuestion += allQuestions.list.get(questionNumber).questionSet.get("d");
+            String fullAnswers = allQuestions.list.get(questionNumber).questionSet.get("a").toString();
+            fullAnswers += allQuestions.list.get(questionNumber).questionSet.get("b");
+            fullAnswers += allQuestions.list.get(questionNumber).questionSet.get("c");
+            fullAnswers += allQuestions.list.get(questionNumber).questionSet.get("d");
             correctAnswer = allQuestions.list.get(questionNumber).questionSet.get("answer").toString();
+            questionLabel.setVisibility(View.VISIBLE);
+            answers.setVisibility(View.VISIBLE);
 
+            answers.setText(fullAnswers);
             questionLabel.setText(fullQuestion);
 
             if (allQuestions.list.get(questionNumber).questionSet.get("format").toString().equals("RADIO")) {
@@ -102,7 +111,9 @@ public class MainActivity extends AppCompatActivity {
             AlertDialog.Builder a_builder = new AlertDialog.Builder(this);
             a_builder.setMessage("You finished the quiz!");
             a_builder.show();
-            questionLabel.setText("You scored " +score+ "%");
+            displayFinalLabel();
+            questionLabel.setVisibility(View.INVISIBLE);
+            finalLabel.setText("You scored " + score + "%");
             displayTryAgain();
             score = 0;
         }
@@ -247,12 +258,14 @@ public class MainActivity extends AppCompatActivity {
 
     // Hide all the Input Views
     private void hideAll() {
+        answers.setVisibility(View.INVISIBLE);
         buttonGroup.setVisibility(View.INVISIBLE);
         radioGroup.setVisibility(View.INVISIBLE);
         checkGroup.setVisibility(View.INVISIBLE);
         nextQ.setVisibility(View.INVISIBLE);
         text_Entry.setVisibility(View.INVISIBLE);
         tryAgain.setVisibility(View.INVISIBLE);
+        finalLabel.setVisibility(View.INVISIBLE);
     }
 
     private void displayRadio() {
@@ -271,8 +284,12 @@ public class MainActivity extends AppCompatActivity {
         text_Entry.setVisibility(View.VISIBLE);
     }
 
-    private void displayTryAgain(){
+    private void displayTryAgain() {
         tryAgain.setVisibility(View.VISIBLE);
+    }
+
+    private void displayFinalLabel() {
+        finalLabel.setVisibility(View.VISIBLE);
     }
 
     public void restart(View view) {

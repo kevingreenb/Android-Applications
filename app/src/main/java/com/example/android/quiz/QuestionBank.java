@@ -10,7 +10,7 @@ public class QuestionBank {
     ArrayList<Question> list = new ArrayList<>();
 
     public QuestionBank() {
-        list.add(new Question("Which of the following is an example of valid jQuery code?\n",
+        list.add(new Question("Which of the following is an example of valid jQuery code?\n\n",
                 "a) $('main-nav').show();\n",
                 "b) document.querySelector('#main-nav');\n",
                 "c) $('#main-nav').hide();\n",
@@ -18,7 +18,7 @@ public class QuestionBank {
                 "c",
                 "RADIO"));
 
-        list.add(new Question( "What will the following code do? \n"+
+        list.add(new Question( "What will the following code do? \n\n"+
                 "$('#price-list li').html('<strong>$4.99</strong>');\n",
                 "a) Select the element with the ID of price list and set its HTML content to $4.99\n",
                 "b) Select the <strong> tag and set its HTML content to $4.99\n",
@@ -27,7 +27,7 @@ public class QuestionBank {
                 "c",
                 "BUTTON"));
 
-        list.add(new Question( "Which of the following is a primary reason the jQuery library was developed for JavaScript?\n",
+        list.add(new Question( "Which of the following is a primary reason the jQuery library was developed for JavaScript?\n\n",
                 "a) To address inconsistencies in the way JavaScript was implemented in different browsers.\n",
                 "b) To provide clear guidelines for web application architecture.\n",
                 "c) To make developer's life easier.\n",
@@ -35,7 +35,7 @@ public class QuestionBank {
                 "ac",
                 "CHECK"));
 
-        list.add(new Question( "Fill in the text below with the method that would hide the element #my-element.",
+        list.add(new Question( "Fill in the text below with the method that would hide the element #my-element.\n\n",
                 "",
                 "",
                 "",
