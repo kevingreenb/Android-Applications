@@ -125,12 +125,19 @@
         android:layout_width="100dp"
         android:layout_height="wrap_content"
         android:inputType="text" />
+    <Button
+        android:id="@+id/try_again"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:onClick="restart"
+        android:text="Try again"/>
 
     <Button
         android:id="@+id/submit_answer"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:onClick="submitAnswer"
-        android:text="Next Question" />
+        android:text="Next Question"
+        />
 
 </LinearLayout>

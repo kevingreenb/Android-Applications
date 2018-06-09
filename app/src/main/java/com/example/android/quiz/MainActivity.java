@@ -25,13 +25,13 @@ public class MainActivity extends AppCompatActivity {
     EditText text_Entry;
     LinearLayout buttonGroup, checkGroup;
     RadioButton radio_1, radio_2, radio_3, radio_4;
-    Button btn_a, btn_b, btn_c, btn_d, nextQ;
+    Button btn_a, btn_b, btn_c, btn_d, nextQ, tryAgain;
     CheckBox ck_a, ck_b, ck_c, ck_d;
     QuestionBank allQuestions = new QuestionBank();
     String pickedAnswer = "", correctAnswer = "", questionFormat = "", testText = "";
     final int numberOfQuestions = allQuestions.list.size();
     final Handler handler = new Handler();
-    int questionNumber = 0;
+    int questionNumber = 0, score = 0;
     boolean noSelection = false;
 
 
@@ -49,6 +49,7 @@ public class MainActivity extends AppCompatActivity {
         btn_c = findViewById(R.id.button_c);
         btn_d = findViewById(R.id.button_d);
         nextQ = findViewById(R.id.submit_answer);
+        tryAgain = findViewById(R.id.try_again);
         buttonGroup = findViewById(R.id.button_group);
         radioGroup = findViewById(R.id.radio_group);
         checkGroup = findViewById(R.id.check_group);
@@ -62,14 +63,15 @@ public class MainActivity extends AppCompatActivity {
 
     private void nextQuestion() {
         hideAll();
+        TextView questionLabel = (TextView) findViewById(R.id.question_text_view);
 
         if (questionNumber <= numberOfQuestions - 1) {
-            TextView questionLabel = (TextView) findViewById(R.id.question_text_view);
+
             String fullQuestion = allQuestions.list.get(questionNumber).questionSet.get("question").toString();
-            fullQuestion += "\n\na) " + allQuestions.list.get(questionNumber).questionSet.get("a");
-            fullQuestion += "\nb) " + allQuestions.list.get(questionNumber).questionSet.get("b");
-            fullQuestion += "\nc) " + allQuestions.list.get(questionNumber).questionSet.get("c");
-            fullQuestion += "\nd) " + allQuestions.list.get(questionNumber).questionSet.get("d");
+            fullQuestion += allQuestions.list.get(questionNumber).questionSet.get("a");
+            fullQuestion += allQuestions.list.get(questionNumber).questionSet.get("b");
+            fullQuestion += allQuestions.list.get(questionNumber).questionSet.get("c");
+            fullQuestion += allQuestions.list.get(questionNumber).questionSet.get("d");
             correctAnswer = allQuestions.list.get(questionNumber).questionSet.get("answer").toString();
 
             questionLabel.setText(fullQuestion);
@@ -97,35 +99,60 @@ public class MainActivity extends AppCompatActivity {
         } else
 
         {
-            restart();
+            AlertDialog.Builder a_builder = new AlertDialog.Builder(this);
+            a_builder.setMessage("You finished the quiz!");
+            a_builder.show();
+            questionLabel.setText("You scored " +score+ "%");
+            displayTryAgain();
+            score = 0;
         }
 
     }
 
-    //Action for button
+    //Action for buttons
 
     public void buttonA(View view) {
         pickedAnswer = "a";
         checkAnswer();
-        nextQuestion();
+        handler.postDelayed(new Runnable() {
+            @Override
+            public void run() {
+                nextQuestion();
+            }
+        }, 1000);
     }
 
     public void buttonB(View view) {
         pickedAnswer = "b";
         checkAnswer();
-        nextQuestion();
+        handler.postDelayed(new Runnable() {
+            @Override
+            public void run() {
+                nextQuestion();
+            }
+        }, 1000);
     }
 
     public void buttonC(View view) {
         pickedAnswer = "c";
         checkAnswer();
-        nextQuestion();
+        handler.postDelayed(new Runnable() {
+            @Override
+            public void run() {
+                nextQuestion();
+            }
+        }, 1000);
     }
 
     public void buttonD(View view) {
         pickedAnswer = "d";
         checkAnswer();
-        nextQuestion();
+        handler.postDelayed(new Runnable() {
+            @Override
+            public void run() {
+                nextQuestion();
+            }
+        }, 1000);
     }
 
     public void getSelectedAnswer(View view) {
@@ -178,42 +205,26 @@ public class MainActivity extends AppCompatActivity {
 
 
     }
-    /*
-        else if (questionFormat.equals("BUTTON")){
 
-            switch(view.getId()) {
-                case R.id.button_a:
-                    pickedAnswer = "a";
-                    break;
-                case R.id.button_b:
-                    pickedAnswer = "b";
-                    break;
-                case R.id.button_c:
-                    pickedAnswer = "c";
-                    break;
-                case R.id.button_d:
-                    pickedAnswer = "d";
-                    break;
-                default:
-                    break;
-            }
-
-        }
-        */
-
-
+    //Action that runs with Next Question is clicked
     public void submitAnswer(View view) {
 
         getSelectedAnswer(view);
         if (noSelection) {
             AlertDialog.Builder a_builder = new AlertDialog.Builder(this);
-            a_builder.setMessage("Please select an answer!");
+            a_builder.setMessage("Please input your answer");
             a_builder.show();
             noSelection = false;
         } else {
             hideAll();
             checkAnswer();
-            nextQuestion();
+
+            handler.postDelayed(new Runnable() {
+                @Override
+                public void run() {
+                    nextQuestion();
+                }
+            }, 1000);
         }
 
     }
@@ -223,6 +234,7 @@ public class MainActivity extends AppCompatActivity {
             AlertDialog.Builder a_builder = new AlertDialog.Builder(this);
             a_builder.setMessage("Right Answer!");
             a_builder.show();
+            score += 25;
         } else {
             AlertDialog.Builder a_builder = new AlertDialog.Builder(this);
             a_builder.setMessage("Wrong Answer!");
@@ -240,6 +252,7 @@ public class MainActivity extends AppCompatActivity {
         checkGroup.setVisibility(View.INVISIBLE);
         nextQ.setVisibility(View.INVISIBLE);
         text_Entry.setVisibility(View.INVISIBLE);
+        tryAgain.setVisibility(View.INVISIBLE);
     }
 
     private void displayRadio() {
@@ -258,10 +271,13 @@ public class MainActivity extends AppCompatActivity {
         text_Entry.setVisibility(View.VISIBLE);
     }
 
-    public void restart() {
+    private void displayTryAgain(){
+        tryAgain.setVisibility(View.VISIBLE);
+    }
+
+    public void restart(View view) {
         questionNumber = 0;
         hideAll();
-        //Collections.shuffle(allQuestions.list);
         nextQuestion();
 
     }
