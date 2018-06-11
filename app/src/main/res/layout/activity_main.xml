@@ -9,11 +9,11 @@
     tools:context="com.example.android.quiz.MainActivity">
 
     <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent">
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content">
 
         <TextView
-            android:id="@+id/question_text_view"
+            android:id="@+id/questionText"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_centerHorizontal="true"
@@ -25,10 +25,10 @@
             app:layout_constraintTop_toTopOf="parent" />
 
         <TextView
-            android:id="@+id/answers_text"
+            android:id="@+id/answersText"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_below="@id/question_text_view"
+            android:layout_below="@id/questionText"
             android:layout_centerHorizontal="true"
             android:text="Answers"
             android:textSize="@dimen/font_size2"
@@ -38,7 +38,7 @@
             app:layout_constraintTop_toTopOf="parent" />
 
         <TextView
-            android:id="@+id/final_text"
+            android:id="@+id/finalLabel"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_centerHorizontal="true"
@@ -51,34 +51,34 @@
 
 
         <RadioGroup
-            android:id="@+id/radio_group"
+            android:id="@+id/radioGroup"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_below="@+id/answers_text">
+            android:layout_below="@+id/answersText">
 
             <RadioButton
-                android:id="@+id/option1_button"
+                android:id="@+id/radioA"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="A"
                 android:textSize="@dimen/font_size1" />
 
             <RadioButton
-                android:id="@+id/option2_button"
+                android:id="@+id/radioB"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="B"
                 android:textSize="@dimen/font_size1" />
 
             <RadioButton
-                android:id="@+id/option3_button"
+                android:id="@+id/radioC"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="C"
                 android:textSize="@dimen/font_size1" />
 
             <RadioButton
-                android:id="@+id/option4_button"
+                android:id="@+id/radioD"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="D"
@@ -87,13 +87,13 @@
 
 
         <LinearLayout
-            android:id="@+id/button_group"
+            android:id="@+id/buttonGroup"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_below="@+id/answers_text">
+            android:layout_below="@+id/answersText">
 
             <Button
-                android:id="@+id/button_a"
+                android:id="@+id/buttonA"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="16dp"
@@ -101,12 +101,12 @@
                 android:layout_marginRight="8dp"
                 android:layout_weight="1"
                 android:background="@drawable/button_shape"
-                android:onClick="buttonA"
+                android:onClick="pressedA"
                 android:text="A"
                 android:textSize="@dimen/font_size1" />
 
             <Button
-                android:id="@+id/button_b"
+                android:id="@+id/buttonB"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="16dp"
@@ -114,12 +114,12 @@
                 android:layout_marginRight="8dp"
                 android:layout_weight="1"
                 android:background="@drawable/button_shape"
-                android:onClick="buttonB"
+                android:onClick="pressedB"
                 android:text="B"
                 android:textSize="@dimen/font_size1" />
 
             <Button
-                android:id="@+id/button_c"
+                android:id="@+id/buttonC"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="16dp"
@@ -127,12 +127,12 @@
                 android:layout_marginRight="8dp"
                 android:layout_weight="1"
                 android:background="@drawable/button_shape"
-                android:onClick="buttonC"
+                android:onClick="pressedC"
                 android:text="C"
                 android:textSize="@dimen/font_size1" />
 
             <Button
-                android:id="@+id/button_d"
+                android:id="@+id/buttonD"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="16dp"
@@ -140,42 +140,42 @@
                 android:layout_marginRight="8dp"
                 android:layout_weight="1"
                 android:background="@drawable/button_shape"
-                android:onClick="buttonD"
+                android:onClick="pressedD"
                 android:text="D"
                 android:textSize="@dimen/font_size1" />
 
         </LinearLayout>
 
         <LinearLayout
-            android:id="@+id/check_group"
+            android:id="@+id/checkGroup"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_below="@+id/answers_text"
+            android:layout_below="@+id/answersText"
             android:orientation="vertical">
 
             <CheckBox
-                android:id="@+id/check_a"
+                android:id="@+id/checkA"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="A"
                 android:textSize="@dimen/font_size1" />
 
             <CheckBox
-                android:id="@+id/check_b"
+                android:id="@+id/checkB"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="B"
                 android:textSize="@dimen/font_size1" />
 
             <CheckBox
-                android:id="@+id/check_c"
+                android:id="@+id/checkC"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="C"
                 android:textSize="@dimen/font_size1" />
 
             <CheckBox
-                android:id="@+id/check_d"
+                android:id="@+id/checkD"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="D"
@@ -185,20 +185,20 @@
 
 
         <EditText
-            android:id="@+id/text_entry"
+            android:id="@+id/textEntry"
             android:layout_width="300dp"
             android:layout_height="wrap_content"
-            android:layout_below="@+id/question_text_view"
+            android:layout_below="@+id/questionText"
             android:layout_centerHorizontal="true"
             android:background="#FFFFFF"
             android:inputType="text"
             android:textSize="@dimen/font_size1" />
 
         <Button
-            android:id="@+id/try_again"
+            android:id="@+id/tryAgain"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_below="@+id/radio_group"
+            android:layout_below="@+id/radioGroup"
             android:layout_centerHorizontal="true"
             android:background="@drawable/button_shape2"
             android:onClick="restart"
@@ -209,7 +209,7 @@
             android:id="@+id/submit_answer"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_below="@+id/radio_group"
+            android:layout_below="@+id/radioGroup"
             android:layout_centerHorizontal="true"
             android:background="@drawable/button_shape2"
             android:onClick="submitAnswer"
